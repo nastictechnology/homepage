@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nastic Technology | IT & Business Administration</title>
+    <style>
+        :root {
+            --bg-color: #0d0e15;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            --accent-glow: rgba(168, 85, 247, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid var(--card-border);
+            background: rgba(13, 14, 21, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Language Translator Bar */
+        .translator-bar {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 10px 5%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            border-bottom: 1px solid var(--card-border);
+            flex-wrap: wrap;
+        }
+
+        .lang-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent-gradient);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 5% 80px 5%;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px var(--accent-glow);
+        }
+
+        .btn-secondary {
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 1px solid var(--card-border);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Services Grid */
+        .section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 40px 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(168, 85, 247, 0.4);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Branches Section */
+        .branches-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .branch-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .branch-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gradient);
+        }
+
+        .branch-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .branch-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 5%;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Translation Bar -->
+    <div class="translator-bar">
+        <button class="lang-btn active" onclick="setLanguage('en')">English</button>
+        <button class="lang-btn" onclick="setLanguage('cs')">Čeština</button>
+        <button class="lang-btn" onclick="setLanguage('pl')">Polski</button>
+        <button class="lang-btn" onclick="setLanguage('hu')">Magyar</button>
+        <button class="lang-btn" onclick="setLanguage('sl')">Slovenščina</button>
+        <button class="lang-btn" onclick="setLanguage('it')">Italiano</button>
+        <button class="lang-btn" onclick="setLanguage('fr')">Français</button>
+    </div>
+
+    <!-- Navigation Header -->
+    <header>
+        <div class="logo">Nastic Technology</div>
+        <ul class="nav-links">
+            <li><a href="#services" data-i18n="nav_services">Services</a></li>
+            <li><a href="#branches" data-i18n="nav_branches">Branches</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 data-i18n="hero_title">Empowering Growth through <span>IT & Business Administration</span></h1>
+        <p data-i18n="hero_desc">Nastic Technology bridges the gap between advanced corporate IT infrastructures and streamlined business management operations across Germany.</p>
+        <div class="cta-buttons">
+            <a href="#branches" class="btn btn-primary" data-i18n="btn_explore">Explore Branches</a>
+            <a href="#contact" class="btn btn-secondary" data-i18n="btn_contact">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <h2 class="section-title" data-i18n="services_heading">Our Core Expertise</h2>
+        <div class="grid">
+            <div class="card">
+                <h3 data-i18n="serv_1_title">IT Infrastructure & Cloud</h3>
+                <p data-i18n="serv_1_desc">Scalable cloud deployment, enterprise network security, systems integration, and round-the-clock technical architecture support.</p>
+            </div>
+            <div class="card">
+                <h3 data-i18n="serv_2_title">Business Administration</h3>
+                <p data-i18n="serv_2_desc">Process optimization, administrative workflow automation, corporate restructuring guidance, and back-office management.</p>
+            </div>
+            <div class="card">
+                <h3 data-i18n="serv_3_title">Digital Transformation</h3>
+                <p data-i18n="serv_3_desc">AI-driven analytics integration, workflow digitalization, custom software advisory, and data-backed performance tracking.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branches Section -->
+    <section id="branches" class="section" style="background: rgba(255,255,255,0.01);">
+        <h2 class="section-title" data-i18n="branches_heading">Our German Branches</h2>
+        <div class="branches-container">
+            <div class="branch-card">
+                <h3 data-i18n="branch_munich">Munich Hub</h3>
+                <p><strong>Address:</strong> Leopoldstraße 45, 80802 München</p>
+                <p><strong>Email:</strong> munich@nastic-tech.com</p>
+                <p><strong>Focus:</strong> Corporate IT & Southern Operations</p>
+            </div>
+            <div class="branch-card">
+                <h3 data-i18n="branch_berlin">Berlin Headquarters</h3>
+                <p><strong>Address:</strong> Friedrichstraße 123, 10117 Berlin</p>
+                <p><strong>Email:</strong> berlin@nastic-tech.com</p>
+                <p><strong>Focus:</strong> Innovation, Cloud Solutions & BA</p>
+            </div>
+            <div class="branch-card">
+                <h3 data-i18n="branch_stuttgart">Stuttgart Office</h3>
+                <p><strong>Address:</strong> Königstraße 26, 70173 Stuttgart</p>
+                <p><strong>Email:</strong> stuttgart@nastic-tech.com</p>
+                <p><strong>Focus:</strong> Industrial IT & Business Systems</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <p>&copy; 2026 Nastic Technology. All rights reserved. | <span data-i18n="footer_rights">Shaping the future of digital enterprise.</span></p>
+    </footer>
+
+    <!-- JavaScript Translation Engine -->
+    <script>
+        const translations = {
+            en: {
+                nav_services: "Services",
+                nav_branches: "Branches",
+                nav_contact: "Contact",
+                hero_title: "Empowering Growth through <span>IT & Business Administration</span>",
+                hero_desc: "Nastic Technology bridges the gap between advanced corporate IT infrastructures and streamlined business management operations across Germany.",
+                btn_explore: "Explore Branches",
+                btn_contact: "Get in Touch",
+                services_heading: "Our Core Expertise",
+                serv_1_title: "IT Infrastructure & Cloud",
+                serv_1_desc: "Scalable cloud deployment, enterprise network security, systems integration, and round-the-clock technical architecture support.",
+                serv_2_title: "Business Administration",
+                serv_2_desc: "Process optimization, administrative workflow automation, corporate restructuring guidance, and back-office management.",
+                serv_3_title: "Digital Transformation",
+                serv_3_desc: "AI-driven analytics integration, workflow digitalization, custom software advisory, and data-backed performance tracking.",
+                branches_heading: "Our German Branches",
+                branch_munich: "Munich Hub",
+                branch_berlin: "Berlin Headquarters",
+                branch_stuttgart: "Stuttgart Office",
+                footer_rights: "Shaping the future of digital enterprise."
+            },
+            cs: {
+                nav_services: "Služby",
+                nav_branches: "Pobočky",
+                nav_contact: "Kontakt",
+                hero_title: "Podpora růstu prostřednictvím <span>IT a podnikové administrativy</span>",
+                hero_desc: "Nastic Technology propojuje pokročilé podnikové IT infrastruktury a efektivní procesy správy firem v celém Německu.",
+                btn_explore: "Prozkoumat pobočky",
+                btn_contact: "Kontaktujte nás",
+                services_heading: "Naše hlavní odbornost",
+                serv_1_title: "IT infrastruktura a cloud",
+                serv_1_desc: "Škálovatelné cloudové nasazení, podniková síťová bezpečnost, integrace systémů a nepřetržitá technická podpora.",
+                serv_2_title: "Podniková administrativa",
+                serv_2_desc: "Optimalizace procesů, automatizace administrativních toků, poradenství při restrukturalizaci a back-office management.",
+                serv_3_title: "Digitální transformace",
+                serv_3_desc: "Integrace analytiky řízené AI, digitalizace procesů, poradenství v oblasti softwaru na míru a sledování výkonu.",
+                branches_heading: "Naše pobočky v Německu",
+                branch_munich: "Mnichovské centrum",
+                branch_berlin: "Berlínské ústředí",
+                branch_stuttgart: "Kancelář ve Stuttgartu",
+                footer_rights: "Formování budoucnosti digitálních podniků."
+            },
+            pl: {
+                nav_services: "Usługi",
+                nav_branches: "Oddziały",
+                nav_contact: "Kontakt",
+                hero_title: "Wspieranie rozwoju poprzez <span>IT i administrację biznesową</span>",
+                hero_desc: "Nastic Technology łączy zaawansowane korporacyjne infrastruktury IT ze sprawnymi procesami zarządzania biznesem w Niemczech.",
+                btn_explore: "Poznaj oddziały",
+                btn_contact: "Skontaktuj się",
+                services_heading: "Nasze główne kompetencje",
+                serv_1_title: "Infrastruktura IT i Chmura",
+                serv_1_desc: "Skalowalne wdrożenia chmurowe, bezpieczeństwo sieci enterprise, integracja systemów oraz całodobowe wsparcie.",
+                serv_2_title: "Administracja Biznesowa",
+                serv_2_desc: "Optymalizacja procesów, automatyzacja przepływu pracy, doradztwo w restrukturyzacji i zarządzanie zapleczem.",
+                serv_3_title: "Transformacja Cyfrowa",
+                serv_3_desc: "Integracja analityki AI, cyfryzacja procesów roboczych, doradztwo w zakresie oprogramowania i śledzenie wydajności.",
+                branches_heading: "Nasze oddziały w Niemczech",
+                branch_munich: "Centrum w Monachium",
+                branch_berlin: "Siedziba główna w Berlinie",
+                branch_stuttgart: "Biuro w Stuttgarcie",
+                footer_rights: "Kształtowanie przyszłości przedsiębiorcy cyfrowego."
+            },
+            hu: {
+                nav_services: "Szolgáltatások",
+                nav_branches: "Kirendeltségek",
+                nav_contact: "Kapcsolat",
+                hero_title: "Növekedés ösztönzése <span>IT-n és üzleti adminisztráción</span> keresztül",
+                hero_desc: "A Nastic Technology áthidalja a szakadékot a fejlett vállalati IT-infrastruktúrák és a hatékony üzleti menedzsment között Németország-szerte.",
+                btn_explore: "Kirendeltségek felfedezése",
+                btn_contact: "Kapcsolatfelvétel",
+                services_heading: "Fő szakterületeink",
+                serv_1_title: "IT Infrastruktúra és Felhő",
+                serv_1_desc: "Skálázható felhőalapú kiépítés, vállalati hálózatbiztonság, rendszereintegráció és éjjel-nappali műszaki támogatás.",
+                serv_2_title: "Üzleti Adminisztráció",
+                serv_2_desc: "Folyamatoptimalizálás, adminisztrációs munkafolyamat-automatizálás, szervezetátalakítási tanácsadás és háttértámogatás.",
+                serv_3_title: "Digitális Átalakulás",
+                serv_3_desc: "MI-vezérelt elemzések integrációja, munkafolyamatok digitalizálása, egyedi szoftvertanácsadás.",
+                branches_heading: "Németországi kirendeltségeink",
+                branch_munich: "Müncheni központ",
+                branch_berlin: "Berlini főhadiszállás",
+                branch_stuttgart: "Stuttgarti iroda",
+                footer_rights: "A digitális vállalat jövőjének alakítása."
+            },
+            sl: {
+                nav_services: "Storitve",
+                nav_branches: "Podružnice",
+                nav_contact: "Kontakt",
+                hero_title: "Spodbujanje rasti z <span>IT in poslovno administracijo</span>",
+                hero_desc: "Nastic Technology povezuje napredne korporativne IT infrastrukture in poenostavljeno upravljanje poslovanja po vsej Nemčiji.",
+                btn_explore: "Raziščite podružnice",
+                btn_contact: "Stopite v stik",
+                services_heading: "Naše ključno strokovno znanje",
+                serv_1_title: "IT infrastruktura in oblak",
+                serv_1_desc: "Skalabilna postavitev v oblaku, varnost podjetniškega omrežja, sistemska integracija in 24/7 tehnična podpora.",
+                serv_2_title: "Poslovna administracija",
+                serv_2_desc: "Optimizacija procesov, avtomatizacija administrativnih delovnih tokov in svetovanje pri prestrukturiranju podjetij.",
+                serv_3_title: "Digitalna preobrazba",
+                serv_3_desc: "Integracija analitike z umetno inteligenco, digitalizacija delovnih procesov in svetovanje glede programske opreme.",
+                branches_heading: "Naše nemške podružnice",
+                branch_munich: "Münchensko središče",
+                branch_berlin: "Berlinski sedež",
+                branch_stuttgart: "Stuttgardska pisarna",
+                footer_rights: "Oblikovanje prihodnosti digitalnega podjetništva."
+            },
+            it: {
+                nav_services: "Servizi",
+                nav_branches: "Sedi",
+                nav_contact: "Contatti",
+                hero_title: "Crescita aziendale tramite <span>IT e Amministrazione</span>",
+                hero_desc: "Nastic Technology colma il divario tra le infrastrutture IT aziendali avanzate e la gestione aziendale semplificata in Germania.",
+                btn_explore: "Esplora i Sedi",
+                btn_contact: "Mettiti in Contatto",
+                services_heading: "Le Nostre Competenze",
+                serv_1_title: "Infrastruttura IT e Cloud",
+                serv_1_desc: "Distribuzione cloud scalabile, sicurezza di rete aziendale, integrazione di sistemi e supporto tecnico 24 ore su 24.",
+                serv_2_title: "Amministrazione Aziendale",
+                serv_2_desc: "Ottimizzazione dei processi, automazione dei flussi amministrativi e consulenza per la ristrutturazione aziendale.",
+                serv_3_title: "Trasformazione Digitale",
+                serv_3_desc: "Integrazione di analisi guidate dall'IA, digitalizzazione dei flussi di lavoro e consulenza software personalizzata.",
+                branches_heading: "Le Nostre Sedi in Germania",
+                branch_munich: "Hub di Monaco",
+                branch_berlin: "Sede Centrale di Berlino",
+                branch_stuttgart: "Ufficio di Stoccarda",
+                footer_rights: "Modellare il futuro dell'impresa digitale."
+            },
+            fr: {
+                nav_services: "Services",
+                nav_branches: "Agences",
+                nav_contact: "Contact",
+                hero_title: "Stimuler la croissance grâce à <span>l'informatique et l'administration</span>",
+                hero_desc: "Nastic Technology fait le lien entre les infrastructures informatiques d'entreprise et la gestion administrative rationalisée en Allemagne.",
+                btn_explore: "Explorer les agences",
+                btn_contact: "Nous contacter",
+                services_heading: "Notre expertise clé",
+                serv_1_title: "Infrastructure IT & Cloud",
+                serv_1_desc: "Déploiement cloud évolutif, sécurité réseau d'entreprise, intégration de systèmes et support technique permanent.",
+                serv_2_title: "Administration d'entreprise",
+                serv_2_desc: "Optimisation des processus, automatisation des flux administratifs et conseil en restructuration d'entreprise.",
+                serv_3_title: "Transformation Numérique",
+                serv_3_desc: "Intégration d'analyses propulsées par l'IA, numérisation des processus et conseil en logiciels personnalisés.",
+                branches_heading: "Nos agences en Allemagne",
+                branch_munich: "Pôle de Munich",
+                branch_berlin: "Siège social de Berlin",
+                branch_stuttgart: "Bureau de Stuttgart",
+                footer_rights: "Façonner l'avenir de l'entreprise numérique."
+            }
+        };
+
+        function setLanguage(lang) {
+            // Update active button state
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Apply translations
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+        }
+    </script>
+</body>
+</html>
